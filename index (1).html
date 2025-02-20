@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可爱小熊</title>
+    <style>
+        body {
+            background-color: pink;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .bears {
+            width: 300px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+        .message {
+            font-size: 1.2em;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="bears" id="bears" style="background-image: url('bears_sitting.jpg');"></div> <!-- 初始图片 -->
+    <p class="message" id="message">你可以做我的恋人吗？</p >
+    <div class="buttons" id="buttons">
+        <button class="button" id="yes">可以</button>
+        <button class="button" id="no">不行</button>
+    </div>
+
+    <script>
+        const bears = document.getElementById('bears');
+        const message = document.getElementById('message');
+        const buttons = document.getElementById('buttons');
+        const yesButton = document.getElementById('yes');
+        const noButton = document.getElementById('no');
+
+        // 点击“可以”，图片变为拥抱的小熊，问题变为“太好了”，按钮消失
+        yesButton.addEventListener('click', () => {
+            bears.style.backgroundImage = 'url("bears_hugging.jpg")'; // 更改图片为拥抱的小熊
+            message.textContent = "太好了"; // 更改问题内容
+            buttons.style.display = "none"; // 隐藏按钮
+        });
+
+        // 点击“不行”，按钮大小变化，问题内容变为“真的吗？”
+        noButton.addEventListener('click', () => {
+            // 改变按钮大小
+            yesButton.style.fontSize = `${parseInt(yesButton.style.fontSize || '14px') + 40}px`;
+            yesButton.style.padding = `10px ${parseInt(yesButton.style.paddingRight || '20px') + 20}px`;
+            noButton.style.fontSize = `${parseInt(noButton.style.fontSize || '14px') - 2}px`;
+            noButton.style.padding = `10px ${parseInt(noButton.style.paddingRight || '20px') - 5}px`;
+
+            // 改变问题内容
+            message.textContent = "真的吗？";
+        });
+    </script>
+</body>
+</html>
